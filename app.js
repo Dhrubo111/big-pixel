@@ -11,6 +11,9 @@ let allRows = document.querySelectorAll("row")
 let resetBtn = document.querySelector(".reset")
 
 
+let allcells = document.querySelectorAll("cell")
+
+
 
 
 //drawing the sliderValue
@@ -53,7 +56,25 @@ slider.addEventListener(
 
 
 
+// default mouse move  function
 
+allcells.forEach(
+
+    cell =>{
+        cell.addEventListener(
+            "mousemove" , () =>{
+                
+                cell.style.backgroundColor = 'black';
+            }
+        )
+        
+        cell.addEventListener(
+            "mouseleave" , ()=>{
+                cell.style.backgroundColor = "";
+            }
+        )
+    }
+)
 
 
 // last 
