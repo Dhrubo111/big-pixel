@@ -57,51 +57,39 @@ slider.addEventListener(
 
 
 // default mouse move  function
-
-let isMouseDown = false;
-
-// Update the mousedown and mouseup event listeners
-bord.addEventListener("mousedown", () => {
-  isMouseDown = true;
-});
-
-document.addEventListener("mouseup", () => {
-  isMouseDown = false;
-});
-
-// Update the mousemove event listener to check for isMouseDown
-bord.addEventListener("mousemove", (event) => {
-  if (isMouseDown && event.target.classList.contains("cell")) {
-    // Use getRandomColor to set the background color
-    event.target.style.backgroundColor = "black";
+// Function to handle cell interactions
+function handleCellInteraction(element) {
+    if (element.classList.contains("cell")) {
+      element.style.backgroundColor = "black";
+    }
   }
-});
-
-// Reset isMouseDown when the mouse leaves the board
-bord.addEventListener("mouseleave", () => {
-  isMouseDown = false;
-});
-
-
-
-// touch support 
-
-// Add touch event listeners
-bord.addEventListener("touchstart", (event) => {
-    isMouseDown = true;
-  });
   
-  document.addEventListener("touchend", (event) => {
-    isMouseDown = false;
+  // Use event delegation for mousemove and mouseleave events
+  bord.addEventListener("mousemove", (event) => {
+    handleCellInteraction(event.target);
   });
   
   bord.addEventListener("touchmove", (event) => {
-    if (isMouseDown && event.target.classList.contains("cell")) {
-      event.target.style.backgroundColor = "black";
-    }
+    // Prevent default to avoid unwanted scrolling on touch devices
+    event.preventDefault();
+    handleCellInteraction(event.target);
   });
   
-
+  bord.addEventListener("mouseleave", (event) => {
+    handleCellInteraction(event.target);
+  });
+  
+  bord.addEventListener("touchend", (event) => {
+    handleCellInteraction(event.target);
+  });
+  
+  // reset function
+  resetBtn.addEventListener("click", () => {
+    let defaultValue = (slider.value = 16);
+    rangeValue.textContent = defaultValue;
+    draw(defaultValue);
+  });
+  
 
 // last 
 
