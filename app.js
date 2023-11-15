@@ -58,18 +58,49 @@ slider.addEventListener(
 
 // default mouse move  function
 
-// Use event delegation for mousemove and mouseleave events
+let isMouseDown = false;
+
+// Update the mousedown and mouseup event listeners
+bord.addEventListener("mousedown", () => {
+  isMouseDown = true;
+});
+
+document.addEventListener("mouseup", () => {
+  isMouseDown = false;
+});
+
+// Update the mousemove event listener to check for isMouseDown
 bord.addEventListener("mousemove", (event) => {
-    if (event.target.classList.contains("cell")) {
+  if (isMouseDown && event.target.classList.contains("cell")) {
+    // Use getRandomColor to set the background color
+    event.target.style.backgroundColor = "black";
+  }
+});
+
+// Reset isMouseDown when the mouse leaves the board
+bord.addEventListener("mouseleave", () => {
+  isMouseDown = false;
+});
+
+
+
+// touch support 
+
+// Add touch event listeners
+bord.addEventListener("touchstart", (event) => {
+    isMouseDown = true;
+  });
+  
+  document.addEventListener("touchend", (event) => {
+    isMouseDown = false;
+  });
+  
+  bord.addEventListener("touchmove", (event) => {
+    if (isMouseDown && event.target.classList.contains("cell")) {
       event.target.style.backgroundColor = "black";
     }
   });
   
-  bord.addEventListener("mouseleave", (event) => {
-    if (event.target.classList.contains("cell")) {
-      event.target.style.backgroundColor = "";
-    }
-  });
 
 
 // last 
