@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Big Pixel</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="main-title">
+            Big Pixel
+        </h1>
+        <div class="tool-bar">
+            <button class="eraser btn">
+                Eraser
+            </button>
+            <button class="ranbow btn">Rainbow
+            </button>
+            <button class="color-pick btn">colors
+            </button>
+            <button class="reset btn">reset
+            </button>
+      
+        </div>
+        <div class="slider"><input type="range" min="1" max="100" value="16" oninput="rangeValue.innerText = this.value" id="mySlider">
+            <p id="rangeValue">16</p></div> 
+   
+        <div class="bord">
+
+        </div>
+    </div>
+
+
+
+    <script src="./app.js"></script>
+</body>
+</html>
