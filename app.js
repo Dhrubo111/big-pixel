@@ -5,13 +5,13 @@ let slider = document.getElementById("mySlider")
 let rangeValue = document.getElementById("rangeValue")
 
 
-let allRows = document.querySelectorAll("row")
+let allRows = document.querySelectorAll(".row")
 
 
 let resetBtn = document.querySelector(".reset")
 
 
-let allcells = document.querySelectorAll("cell")
+let allcells = document.querySelectorAll(".cell")
 
 
 
@@ -37,7 +37,7 @@ function draw(sliderValue){
     bord.appendChild(row)
 
    }
- 
+   allcells = document.querySelectorAll(".cell");
 }
 
 draw(slider.value)
@@ -58,23 +58,18 @@ slider.addEventListener(
 
 // default mouse move  function
 
-allcells.forEach(
-
-    cell =>{
-        cell.addEventListener(
-            "mousemove" , () =>{
-                
-                cell.style.backgroundColor = 'black';
-            }
-        )
-        
-        cell.addEventListener(
-            "mouseleave" , ()=>{
-                cell.style.backgroundColor = "";
-            }
-        )
+// Use event delegation for mousemove and mouseleave events
+bord.addEventListener("mousemove", (event) => {
+    if (event.target.classList.contains("cell")) {
+      event.target.style.backgroundColor = "black";
     }
-)
+  });
+  
+  bord.addEventListener("mouseleave", (event) => {
+    if (event.target.classList.contains("cell")) {
+      event.target.style.backgroundColor = "";
+    }
+  });
 
 
 // last 
